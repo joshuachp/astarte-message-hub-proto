@@ -30,22 +30,43 @@ import "astarteplatform/msghub/property.proto";
 import "google/protobuf/empty.proto";
 
 service MessageHub {
-  /* This function should be used to attach a node to an instance of the Astarte message hub.
-   * Returns a data stream from the Astarte message hub.
-   */
+  // This function should be used to attach a node to an instance of the Astarte message hub.
+  //
+  // Returns a data stream from the Astarte message hub.
   rpc Attach(Node) returns (stream MessageHubEvent) {}
-  /* This function should be used to send an `AstarteMessage` to Astarte. */
+  // This function should be used to send an `AstarteMessage` to Astarte.
   rpc Send(AstarteMessage) returns (google.protobuf.Empty) {}
-  /* This function should be used to detach a node from an instance of the Astarte message hub. */
+  // This function should be used to detach a node from an instance of the Astarte message hub.
   rpc Detach(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-  /* This function should be used to add one or more interfaces to an instance of the Astarte message hub. */
+  // This function should be used to add one or more interfaces to an instance of the Astarte message hub.
   rpc AddInterfaces(InterfacesJson) returns (google.protobuf.Empty) {}
-  /* This function should be used to remove one or more interfaces from an instance of the Astarte message hub. */
+  // This function should be used to remove one or more interfaces from an instance of the Astarte message hub.
   rpc RemoveInterfaces(InterfacesName) returns (google.protobuf.Empty) {}
-  /* Get properties associated with the passed interfaces. */
+  // Get properties associated with the passed interfaces.
   rpc GetProperties(InterfaceName) returns (StoredProperties) {}
-  /* Get all the properties, allowing also filtering by interface ownership. */
+  // Get all the properties, allowing also filtering by interface ownership.
   rpc GetAllProperties(PropertyFilter) returns (StoredProperties) {}
-  /* Get a specific property by its identifier, could be an unset property  */
+  // Get a specific property by its identifier, could be an unset property
   rpc GetProperty(PropertyIdentifier) returns (AstartePropertyIndividual) {}
+  // Check whether the device is registered with Astarte
+  rpc IsRegistered(google.protobuf.Empty) returns (IsRegisteredResponse) {}
+  // Check whether the device is connected with Astarte
+  rpc IsConnected(google.protobuf.Empty) returns (IsConnectedResponse) {}
+  // Get the current device connection status.
+  rpc GetConnectionState(google.protobuf.Empty) returns (GetConnectionStateResponse) {}
+}
+
+// Response for IsRegistered rpc.
+message IsRegisteredResponse {
+  bool registered = 1;
+}
+
+// Response for IsConnected rpc.
+message IsConnectedResponse {
+  bool connected = 1;
+}
+
+// Response for GetConnectionState rpc.
+message GetConnectionStateResponse {
+  ConnectionState state = 1;
 }

@@ -31,7 +31,10 @@ include!("astarteplatform.msghub.rs");
 impl Node {
     /// Create a new [Node] with the given `interfaces_json`.
     pub fn new(interfaces_json: Vec<String>) -> Self {
-        Self { interfaces_json }
+        Self {
+            interfaces_json,
+            connection_events: true,
+        }
     }
 
     /// Create a new [Node] from an iterator of interfaces.
@@ -89,6 +92,7 @@ impl MessageHubEvent {
         self.event.and_then(|r| match r {
             message_hub_event::Event::Message(msg) => Some(msg),
             message_hub_event::Event::Error(_) => None,
+            message_hub_event::Event::Connection(_) => None,
         })
     }
 
@@ -96,6 +100,7 @@ impl MessageHubEvent {
         self.event.and_then(|r| match r {
             message_hub_event::Event::Message(_) => None,
             message_hub_event::Event::Error(err) => Some(err),
+            message_hub_event::Event::Connection(_) => None,
         })
     }
 

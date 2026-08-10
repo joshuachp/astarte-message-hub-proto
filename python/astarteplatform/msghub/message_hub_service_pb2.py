@@ -30,13 +30,19 @@ from astarteplatform.msghub import property_pb2 as astarteplatform_dot_msghub_do
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n0astarteplatform/msghub/message_hub_service.proto\x12\x16\x61starteplatform.msghub\x1a)astarteplatform/msghub/astarte_data.proto\x1a,astarteplatform/msghub/astarte_message.proto\x1a&astarteplatform/msghub/interface.proto\x1a!astarteplatform/msghub/node.proto\x1a%astarteplatform/msghub/property.proto\x1a\x1bgoogle/protobuf/empty.proto2\xcc\x05\n\nMessageHub\x12S\n\x06\x41ttach\x12\x1c.astarteplatform.msghub.Node\x1a\'.astarteplatform.msghub.MessageHubEvent\"\x00\x30\x01\x12H\n\x04Send\x12&.astarteplatform.msghub.AstarteMessage\x1a\x16.google.protobuf.Empty\"\x00\x12:\n\x06\x44\x65tach\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.Empty\"\x00\x12Q\n\rAddInterfaces\x12&.astarteplatform.msghub.InterfacesJson\x1a\x16.google.protobuf.Empty\"\x00\x12T\n\x10RemoveInterfaces\x12&.astarteplatform.msghub.InterfacesName\x1a\x16.google.protobuf.Empty\"\x00\x12\x62\n\rGetProperties\x12%.astarteplatform.msghub.InterfaceName\x1a(.astarteplatform.msghub.StoredProperties\"\x00\x12\x66\n\x10GetAllProperties\x12&.astarteplatform.msghub.PropertyFilter\x1a(.astarteplatform.msghub.StoredProperties\"\x00\x12n\n\x0bGetProperty\x12*.astarteplatform.msghub.PropertyIdentifier\x1a\x31.astarteplatform.msghub.AstartePropertyIndividual\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n0astarteplatform/msghub/message_hub_service.proto\x12\x16\x61starteplatform.msghub\x1a)astarteplatform/msghub/astarte_data.proto\x1a,astarteplatform/msghub/astarte_message.proto\x1a&astarteplatform/msghub/interface.proto\x1a!astarteplatform/msghub/node.proto\x1a%astarteplatform/msghub/property.proto\x1a\x1bgoogle/protobuf/empty.proto\"*\n\x14IsRegisteredResponse\x12\x12\n\nregistered\x18\x01 \x01(\x08\"(\n\x13IsConnectedResponse\x12\x11\n\tconnected\x18\x01 \x01(\x08\"T\n\x1aGetConnectionStateResponse\x12\x36\n\x05state\x18\x01 \x01(\x0e\x32\'.astarteplatform.msghub.ConnectionState2\xde\x07\n\nMessageHub\x12S\n\x06\x41ttach\x12\x1c.astarteplatform.msghub.Node\x1a\'.astarteplatform.msghub.MessageHubEvent\"\x00\x30\x01\x12H\n\x04Send\x12&.astarteplatform.msghub.AstarteMessage\x1a\x16.google.protobuf.Empty\"\x00\x12:\n\x06\x44\x65tach\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.Empty\"\x00\x12Q\n\rAddInterfaces\x12&.astarteplatform.msghub.InterfacesJson\x1a\x16.google.protobuf.Empty\"\x00\x12T\n\x10RemoveInterfaces\x12&.astarteplatform.msghub.InterfacesName\x1a\x16.google.protobuf.Empty\"\x00\x12\x62\n\rGetProperties\x12%.astarteplatform.msghub.InterfaceName\x1a(.astarteplatform.msghub.StoredProperties\"\x00\x12\x66\n\x10GetAllProperties\x12&.astarteplatform.msghub.PropertyFilter\x1a(.astarteplatform.msghub.StoredProperties\"\x00\x12n\n\x0bGetProperty\x12*.astarteplatform.msghub.PropertyIdentifier\x1a\x31.astarteplatform.msghub.AstartePropertyIndividual\"\x00\x12V\n\x0cIsRegistered\x12\x16.google.protobuf.Empty\x1a,.astarteplatform.msghub.IsRegisteredResponse\"\x00\x12T\n\x0bIsConnected\x12\x16.google.protobuf.Empty\x1a+.astarteplatform.msghub.IsConnectedResponse\"\x00\x12\x62\n\x12GetConnectionState\x12\x16.google.protobuf.Empty\x1a\x32.astarteplatform.msghub.GetConnectionStateResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'astarteplatform.msghub.message_hub_service_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_MESSAGEHUB']._serialized_start=309
-  _globals['_MESSAGEHUB']._serialized_end=1025
+  _globals['_ISREGISTEREDRESPONSE']._serialized_start=308
+  _globals['_ISREGISTEREDRESPONSE']._serialized_end=350
+  _globals['_ISCONNECTEDRESPONSE']._serialized_start=352
+  _globals['_ISCONNECTEDRESPONSE']._serialized_end=392
+  _globals['_GETCONNECTIONSTATERESPONSE']._serialized_start=394
+  _globals['_GETCONNECTIONSTATERESPONSE']._serialized_end=478
+  _globals['_MESSAGEHUB']._serialized_start=481
+  _globals['_MESSAGEHUB']._serialized_end=1471
 # @@protoc_insertion_point(module_scope)

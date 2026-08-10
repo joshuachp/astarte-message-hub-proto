@@ -6,6 +6,7 @@ import warnings
 from astarteplatform.msghub import astarte_data_pb2 as astarteplatform_dot_msghub_dot_astarte__data__pb2
 from astarteplatform.msghub import astarte_message_pb2 as astarteplatform_dot_msghub_dot_astarte__message__pb2
 from astarteplatform.msghub import interface_pb2 as astarteplatform_dot_msghub_dot_interface__pb2
+from astarteplatform.msghub import message_hub_service_pb2 as astarteplatform_dot_msghub_dot_message__hub__service__pb2
 from astarteplatform.msghub import node_pb2 as astarteplatform_dot_msghub_dot_node__pb2
 from astarteplatform.msghub import property_pb2 as astarteplatform_dot_msghub_dot_property__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
@@ -79,6 +80,21 @@ class MessageHubStub(object):
                 request_serializer=astarteplatform_dot_msghub_dot_property__pb2.PropertyIdentifier.SerializeToString,
                 response_deserializer=astarteplatform_dot_msghub_dot_astarte__data__pb2.AstartePropertyIndividual.FromString,
                 _registered_method=True)
+        self.IsRegistered = channel.unary_unary(
+                '/astarteplatform.msghub.MessageHub/IsRegistered',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=astarteplatform_dot_msghub_dot_message__hub__service__pb2.IsRegisteredResponse.FromString,
+                _registered_method=True)
+        self.IsConnected = channel.unary_unary(
+                '/astarteplatform.msghub.MessageHub/IsConnected',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=astarteplatform_dot_msghub_dot_message__hub__service__pb2.IsConnectedResponse.FromString,
+                _registered_method=True)
+        self.GetConnectionState = channel.unary_unary(
+                '/astarteplatform.msghub.MessageHub/GetConnectionState',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=astarteplatform_dot_msghub_dot_message__hub__service__pb2.GetConnectionStateResponse.FromString,
+                _registered_method=True)
 
 
 class MessageHubServicer(object):
@@ -86,6 +102,7 @@ class MessageHubServicer(object):
 
     def Attach(self, request, context):
         """This function should be used to attach a node to an instance of the Astarte message hub.
+
         Returns a data stream from the Astarte message hub.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -93,49 +110,70 @@ class MessageHubServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def Send(self, request, context):
-        """This function should be used to send an `AstarteMessage` to Astarte. 
+        """This function should be used to send an `AstarteMessage` to Astarte.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def Detach(self, request, context):
-        """This function should be used to detach a node from an instance of the Astarte message hub. 
+        """This function should be used to detach a node from an instance of the Astarte message hub.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def AddInterfaces(self, request, context):
-        """This function should be used to add one or more interfaces to an instance of the Astarte message hub. 
+        """This function should be used to add one or more interfaces to an instance of the Astarte message hub.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def RemoveInterfaces(self, request, context):
-        """This function should be used to remove one or more interfaces from an instance of the Astarte message hub. 
+        """This function should be used to remove one or more interfaces from an instance of the Astarte message hub.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetProperties(self, request, context):
-        """Get properties associated with the passed interfaces. 
+        """Get properties associated with the passed interfaces.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetAllProperties(self, request, context):
-        """Get all the properties, allowing also filtering by interface ownership. 
+        """Get all the properties, allowing also filtering by interface ownership.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetProperty(self, request, context):
-        """Get a specific property by its identifier, could be an unset property  
+        """Get a specific property by its identifier, could be an unset property
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def IsRegistered(self, request, context):
+        """Check whether the device is registered with Astarte
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def IsConnected(self, request, context):
+        """Check whether the device is connected with Astarte
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetConnectionState(self, request, context):
+        """Get the current device connection status.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -183,6 +221,21 @@ def add_MessageHubServicer_to_server(servicer, server):
                     servicer.GetProperty,
                     request_deserializer=astarteplatform_dot_msghub_dot_property__pb2.PropertyIdentifier.FromString,
                     response_serializer=astarteplatform_dot_msghub_dot_astarte__data__pb2.AstartePropertyIndividual.SerializeToString,
+            ),
+            'IsRegistered': grpc.unary_unary_rpc_method_handler(
+                    servicer.IsRegistered,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=astarteplatform_dot_msghub_dot_message__hub__service__pb2.IsRegisteredResponse.SerializeToString,
+            ),
+            'IsConnected': grpc.unary_unary_rpc_method_handler(
+                    servicer.IsConnected,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=astarteplatform_dot_msghub_dot_message__hub__service__pb2.IsConnectedResponse.SerializeToString,
+            ),
+            'GetConnectionState': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetConnectionState,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=astarteplatform_dot_msghub_dot_message__hub__service__pb2.GetConnectionStateResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -401,6 +454,87 @@ class MessageHub(object):
             '/astarteplatform.msghub.MessageHub/GetProperty',
             astarteplatform_dot_msghub_dot_property__pb2.PropertyIdentifier.SerializeToString,
             astarteplatform_dot_msghub_dot_astarte__data__pb2.AstartePropertyIndividual.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def IsRegistered(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/astarteplatform.msghub.MessageHub/IsRegistered',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            astarteplatform_dot_msghub_dot_message__hub__service__pb2.IsRegisteredResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def IsConnected(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/astarteplatform.msghub.MessageHub/IsConnected',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            astarteplatform_dot_msghub_dot_message__hub__service__pb2.IsConnectedResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetConnectionState(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/astarteplatform.msghub.MessageHub/GetConnectionState',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            astarteplatform_dot_msghub_dot_message__hub__service__pb2.GetConnectionStateResponse.FromString,
             options,
             channel_credentials,
             insecure,
