@@ -119,7 +119,7 @@ async fn main() {
             let elapsed_str = format!("Uptime for node {}: {}", args.uuid, elapsed);
 
             let now = Utc::now();
-            let timestmp = Timestamp {
+            let timestamp = Timestamp {
                 seconds: now.second().into(),
                 nanos: now.timestamp_subsec_millis().try_into().unwrap(),
             };
@@ -132,7 +132,7 @@ async fn main() {
                     data: Some(AstarteData {
                         astarte_data: Some(InnerData::String(elapsed_str)),
                     }),
-                    timestamp: Some(timestmp),
+                    timestamp: Some(timestamp),
                 })),
             };
             client.send(msg).await.unwrap();

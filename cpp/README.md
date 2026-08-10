@@ -9,7 +9,7 @@ SPDX-License-Identifier: Apache-2.0
 ## About gRPC
 
 This project relies on gRPC to generate properly the stubs for C++. You can either choose to install gRPC on your system or to let CMake check it out.
-In production we recomend letting CMake fetch gRPC automatically, this is the default option in the CMakeList in this folder.
+In production we recommend letting CMake fetch gRPC automatically, this is the default option in the CMakeList in this folder.
 If you wish to manually install CMake follow the [online guide](https://grpc.io/docs/languages/cpp/quickstart/#install-grpc) making sure you choose the appropriate version. Then provide CMake with the `ASTARTE_USE_SYSTEM_GRPC` option during build.
 
 ## Import the proto files as a CMake library

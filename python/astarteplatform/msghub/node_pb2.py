@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n!astarteplatform/msghub/node.proto\x12\x16\x61starteplatform.msghub\"\x1f\n\x04Node\x12\x17\n\x0finterfaces_json\x18\x02 \x03(\tb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n!astarteplatform/msghub/node.proto\x12\x16\x61starteplatform.msghub\":\n\x04Node\x12\x17\n\x0finterfaces_json\x18\x02 \x03(\t\x12\x19\n\x11\x63onnection_events\x18\x03 \x01(\x08\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,5 +32,5 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'astarteplatform.msghub.node
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_NODE']._serialized_start=61
-  _globals['_NODE']._serialized_end=92
+  _globals['_NODE']._serialized_end=119
 # @@protoc_insertion_point(module_scope)

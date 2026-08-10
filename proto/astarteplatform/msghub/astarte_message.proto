@@ -25,25 +25,67 @@ package astarteplatform.msghub;
 import "astarteplatform/msghub/astarte_data.proto";
 import "astarteplatform/msghub/message_hub_error.proto";
 
-/* MessageHubEvent is a type of message for returning and propagating errors.
- * It is an enum with the variants, AstarteMessage(message), representing success and
- * containing an astarte message value, and MessageHubError(E) representing error and
- * containing an error value.
- */
+// MessageHubEvent is a type of message for returning and propagating errors.
+//
+// It is an enum with the variants, AstarteMessage(message), representing success and
+// containing an astarte message value, and MessageHubError(E) representing error and
+// containing an error value.
 message MessageHubEvent {
   oneof event {
-    AstarteMessage message = 1; // A message that contains data sent from Astarte.
-    MessageHubError error = 2; // A message that contains a specific Astarte Message Hub error.
+    // A message that contains data sent from Astarte.
+    AstarteMessage message = 1;
+    // A message that contains a specific Astarte Message Hub error.
+    MessageHubError error = 2;
+    // Change in the connection status.
+    ConnectionEvent connection = 3;
   }
 }
 
-/* Astarte message to be used when sending data to Astarte. */
+// Astarte message to be used when sending data to Astarte.
 message AstarteMessage {
-  string interface_name = 1; // Name of the interface to send data on.
-  string path = 2; // Endpoint to send the data on.
-  oneof payload { // Content of the message.
-    AstarteDatastreamIndividual datastream_individual = 3; // An individual data type.
-    AstarteDatastreamObject datastream_object = 4; // An object data type.
-    AstartePropertyIndividual property_individual = 5; // A property data type.
+  // Name of the interface to send data on.
+  string interface_name = 1;
+  // Endpoint to send the data on.
+  string path = 2;
+  // Content of the message.
+  oneof payload {
+    // An individual data type.
+    AstarteDatastreamIndividual datastream_individual = 3;
+    // An object data type.
+    AstarteDatastreamObject datastream_object = 4;
+    // A property data type.
+    AstartePropertyIndividual property_individual = 5;
   }
+}
+
+// Event for when the connection state changes.
+message ConnectionEvent {
+  // New state of the connection.
+  ConnectionState state = 1;
+}
+
+// State of the connection.
+enum ConnectionState {
+  // Empty enum value, used only for ProtoBuf purposes.
+  //
+  // Is not an actual connection state.
+  CONNECTION_STATE_UNSPECIFIED = 0;
+  // Initial connection state.
+  CONNECTION_STATE_IDLE = 1;
+  // The Device is not yet registered with Astarte.
+  CONNECTION_STATE_UNREGISTERED = 2;
+  // Registered device, not yet connected.
+  CONNECTION_STATE_REGISTERED = 3;
+  // Connection with Astarte started.
+  CONNECTION_STATE_CONNECTING = 4;
+  // Device connected with Astarte.
+  CONNECTION_STATE_CONNECTED = 5;
+  // Device disconnected from Astarte.
+  //
+  // This can be caused by a Network or Application error.
+  CONNECTION_STATE_DISCONNECTED = 6;
+  // The device is in an unknown connection state.
+  //
+  // This will be used for forward compatibility and possible state errors.
+  CONNECTION_STATE_UNKNOWN = 7;
 }
